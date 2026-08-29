@@ -22,13 +22,13 @@ jobs:
         run: npm ci
 
       - name: Lint and format check (biome ci)
-        run: npm run ci
+        run: mise run ci
 
       - name: Spell check (cspell)
-        run: npm run spellcheck
+        run: mise run spellcheck
 
       - name: Build shared + server (tsc -b)
-        run: npm run build
+        run: mise run build
 
       - name: Typecheck client
-        run: npm run typecheck
+        run: mise run typecheck
