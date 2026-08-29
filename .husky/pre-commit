@@ -1,3 +1,5 @@
 #!/usr/bin/env sh
+# Fail fast: if the secret scan fails, don't run lint-staged.
+set -e
 ./tools/scan-secrets.sh
 npx lint-staged

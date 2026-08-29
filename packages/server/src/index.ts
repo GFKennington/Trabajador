@@ -9,7 +9,8 @@ app.get("/health", (c) => c.json({ ok: true }));
 // Wiring check: uses a utility + envelope from trabajador-shared.
 app.get("/api/time", (c) => c.json(ok({ now: formatDateTime(new Date()) })));
 
-const port = Number(process.env.PORT ?? 3000);
+const rawPort = Number(process.env.PORT);
+const port = Number.isFinite(rawPort) ? rawPort : 3000;
 serve({ fetch: app.fetch, port }, (info) => {
     console.log(`Trabajador server listening on http://localhost:${info.port}`);
 });
