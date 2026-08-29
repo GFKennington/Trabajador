@@ -18,7 +18,7 @@
             "!**/.expo",
             "!**/ios",
             "!**/android",
-            "!packages/client"
+            "!packages/client/scripts/reset-project.js"
         ],
         "ignoreUnknown": true
     },
@@ -48,5 +48,29 @@
             "semicolons": "always",
             "trailingCommas": "all"
         }
-    }
+    },
+    "overrides": [
+        {
+            "includes": ["packages/client/**"],
+            "linter": {
+                "rules": {
+                    "style": {
+                        "useImportType": "warn",
+                        "useNodejsImportProtocol": "warn"
+                    },
+                    "correctness": {
+                        "noUnusedImports": "warn",
+                        "noUnusedVariables": "warn"
+                    }
+                }
+            },
+            "assist": {
+                "actions": {
+                    "source": {
+                        "organizeImports": "off"
+                    }
+                }
+            }
+        }
+    ]
 }
