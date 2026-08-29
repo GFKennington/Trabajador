@@ -5,7 +5,49 @@ node = "24"
 NODE_ENV = 'development'
 
 [tasks.clean]
-run = './tools/clean.sh'
+description = 'Full clean: remove build artifacts + all node_modules (run `mise run install` after). --keep-deps keeps deps.'
+run = './tools/clean-repo.sh'
+
+[tasks.install]
+description = 'Install all workspace dependencies (npm install)'
+run = 'npm install'
+
+[tasks.build]
+description = 'Build shared + server (tsc -b)'
+run = 'npm run build'
+
+[tasks.typecheck]
+description = 'Typecheck the client (tsc --noEmit)'
+run = 'npm run typecheck'
+
+[tasks.lint]
+description = 'Lint with Biome'
+run = 'npm run lint'
+
+[tasks.format]
+description = 'Format the codebase with Biome (write)'
+run = 'npm run format'
+
+[tasks.check]
+description = 'Lint + format + organize imports with Biome'
+run = 'npm run check'
+
+[tasks.spellcheck]
+description = 'Spell-check the codebase with cspell'
+run = 'npm run spellcheck'
+
+[tasks.ci]
+description = 'Run CI checks locally (biome ci)'
+run = 'npm run ci'
 
 [tasks.test]
-run = 'npm run test'
+description = 'Run tests across workspaces'
+run = 'npm test'
+
+[tasks."dev:server"]
+description = 'Run the server in dev mode (tsx watch)'
+run = 'npm run dev:server'
+
+[tasks."dev:client"]
+description = 'Run the Expo client dev server'
+run = 'npm run dev:client'
