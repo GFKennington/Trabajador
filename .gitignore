@@ -1,1 +1,23 @@
+# dependencies
 node_modules/
+
+# build outputs
+dist/
+*.tsbuildinfo
+
+# expo / metro
+.expo/
+web-build/
+
+# generated native
+ios/
+android/
+
+# env
+.env
+.env.*
+!.env.example
+
+# logs & os
+*.log
+.DS_Store
