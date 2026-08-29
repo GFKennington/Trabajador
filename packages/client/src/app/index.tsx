@@ -8,6 +8,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { WebBadge } from '@/components/web-badge';
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
+import { formatDate } from 'trabajador-shared';
 
 function getDevMenuHint() {
   if (Platform.OS === 'web') {
@@ -36,6 +37,7 @@ export default function HomeScreen() {
           <ThemedText type="title" style={styles.title}>
             Welcome to&nbsp;Trabajador
           </ThemedText>
+          <ThemedText type="small">shared lib ok: {formatDate(new Date())}</ThemedText>
         </ThemedView>
 
         {Platform.OS === 'web' && <WebBadge />}
