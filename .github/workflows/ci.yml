@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   quality:
-    name: lint, typecheck, build
+    name: ci
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,14 +21,5 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Lint and format check (biome ci)
+      - name: Run CI gates (biome ci, cspell, typecheck, build)
         run: mise run ci
-
-      - name: Spell check (cspell)
-        run: mise run spellcheck
-
-      - name: Build all packages (tsc -b + client web export)
-        run: mise run build
-
-      - name: Typecheck client
-        run: mise run typecheck

@@ -17,7 +17,7 @@ description = 'Build all packages: shared + server (tsc -b) and client (expo exp
 run = 'npm run build'
 
 [tasks.typecheck]
-description = 'Typecheck the client (tsc --noEmit)'
+description = 'Typecheck all packages (tsc -b for shared+server, tsc --noEmit for client)'
 run = 'npm run typecheck'
 
 [tasks.lint]
@@ -37,8 +37,8 @@ description = 'Spell-check the codebase with cspell'
 run = 'npm run spellcheck'
 
 [tasks.ci]
-description = 'Run the full CI locally (biome ci, cspell, build, typecheck) — mirrors .github/workflows/ci.yml'
-run = './tools/ci.sh'
+description = 'Run the full CI locally (biome ci, cspell, typecheck, build) — mirrors .github/workflows/ci.yml'
+run = 'npm run ci'
 
 [tasks.test]
 description = 'Run tests across workspaces'
