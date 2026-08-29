@@ -1,0 +1,11 @@
+[tools]
+node = "24"
+
+[env]
+NODE_ENV = 'development'
+
+[tasks.clean]
+run = './tools/clean.sh'
+
+[tasks.test]
+run = 'npm run test'
