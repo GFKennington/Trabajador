@@ -3,4 +3,4 @@ Application that will provide wire sizes/types based on an ampacity/temperature 
 
 ## Authors
 
-Nate Kennington, and Nate Stott
+Grant Kennington, and Nate Stott
