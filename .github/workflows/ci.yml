@@ -27,7 +27,7 @@ jobs:
       - name: Spell check (cspell)
         run: mise run spellcheck
 
-      - name: Build shared + server (tsc -b)
+      - name: Build all packages (tsc -b + client web export)
         run: mise run build
 
       - name: Typecheck client

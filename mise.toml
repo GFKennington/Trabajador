@@ -13,7 +13,7 @@ description = 'Install all workspace dependencies (npm install)'
 run = 'npm install'
 
 [tasks.build]
-description = 'Build shared + server (tsc -b)'
+description = 'Build all packages: shared + server (tsc -b) and client (expo export web)'
 run = 'npm run build'
 
 [tasks.typecheck]

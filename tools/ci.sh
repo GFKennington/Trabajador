@@ -18,7 +18,7 @@ npx @biomejs/biome ci .
 echo "==> cspell lint ."
 npx cspell lint .
 
-echo "==> build shared + server (tsc -b)"
+echo "==> build all packages (tsc -b + client web export)"
 npm run build
 
 echo "==> typecheck client"

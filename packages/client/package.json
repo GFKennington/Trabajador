@@ -36,10 +36,12 @@
   "scripts": {
     "start": "expo start",
     "prestart": "npm run -w trabajador-shared build",
+    "preexport:web": "npm run -w trabajador-shared build",
     "reset-project": "node ./scripts/reset-project.js",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
+    "export:web": "expo export --platform web",
     "lint": "expo lint"
   },
   "private": true
