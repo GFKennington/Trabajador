@@ -41,8 +41,10 @@
         "srgb",
         "worklets",
         "inlines",
-        "predev"
+        "predev",
+        "npmjs",
+        "KHTML"
     ],
-    "ignoreWords": ["AKIA", "baprs", "Blbk"],
+    "ignoreWords": [],
     "flagWords": []
 }

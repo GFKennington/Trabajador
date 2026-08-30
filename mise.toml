@@ -1,5 +1,7 @@
 [tools]
 node = "24"
+lychee = "latest"
+gitleaks = "latest"
 
 [env]
 NODE_ENV = 'development'
@@ -37,8 +39,16 @@ description = 'Spell-check the codebase with cspell'
 run = 'npm run spellcheck'
 
 [tasks.ci]
-description = 'Run the full CI locally (biome ci, cspell, typecheck, build) -- mirrors .github/workflows/ci.yml'
+description = 'Run the full CI locally (biome ci, cspell, typecheck, build, link check) -- mirrors .github/workflows/ci.yml'
 run = 'npm run ci'
+
+[tasks.check-links]
+description = 'Verify all markdown/source links resolve (lychee)'
+run = 'lychee --config lychee.toml .'
+
+[tasks.scan-secrets]
+description = 'Scan for secrets in the working tree (gitleaks detect)'
+run = 'gitleaks detect --source . --config .gitleaks.toml --no-banner --redact'
 
 [tasks.test]
 description = 'Run tests across workspaces'
