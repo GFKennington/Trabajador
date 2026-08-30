@@ -2,6 +2,9 @@
 
 - [Architecture](./architecture.md) — monorepo layout and why each package is built the way it is
 - [Environment](./environment.md) — layered `.env` files
+
+## Per-package docs
+
 - [Client](../packages/client/docs/README.md)
 - [Server](../packages/server/docs/README.md)
 - [Shared](../packages/shared/docs/README.md)
