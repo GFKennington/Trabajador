@@ -39,7 +39,9 @@
         "grantkteam",
         "grantk",
         "srgb",
-        "worklets"
+        "worklets",
+        "inlines",
+        "predev"
     ],
     "ignoreWords": ["AKIA", "baprs", "Blbk"],
     "flagWords": []
