@@ -87,11 +87,4 @@ const styles = StyleSheet.create({
         paddingHorizontal: Spacing.three,
         borderRadius: Spacing.three,
     },
-    externalPressable: {
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: Spacing.one,
-        marginLeft: Spacing.three,
-    },
 });
