@@ -1,11 +1,39 @@
+import * as Device from "expo-device";
 import { Platform, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+// biome-ignore lint/correctness/noUnusedImports: reference, may be wired into the home screen later
+import { AnimatedIcon } from "@/components/animated-icon";
+// biome-ignore lint/correctness/noUnusedImports: reference, may be wired into the home screen later
+import { HintRow } from "@/components/hint-row";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { WebBadge } from "@/components/web-badge";
 import { BottomTabInset, MaxContentWidth, Spacing } from "@/constants/theme";
 import { formatDate } from "trabajador-shared";
+
+// Kept as reference (currently unused). Shows the platform-specific dev-menu
+// hint pattern from the Expo boilerplate; may be wired into the home screen
+// later.
+// biome-ignore lint/correctness/noUnusedVariables: reference, may be wired into the home screen later
+function getDevMenuHint() {
+    if (Platform.OS === "web") {
+        return <ThemedText type="small">use browser devtools</ThemedText>;
+    }
+    if (Device.isDevice) {
+        return (
+            <ThemedText type="small">
+                shake device or press <ThemedText type="code">m</ThemedText> in terminal
+            </ThemedText>
+        );
+    }
+    const shortcut = Platform.OS === "android" ? "cmd+m (or ctrl+m)" : "cmd+d";
+    return (
+        <ThemedText type="small">
+            press <ThemedText type="code">{shortcut}</ThemedText>
+        </ThemedText>
+    );
+}
 
 export default function HomeScreen() {
     return (

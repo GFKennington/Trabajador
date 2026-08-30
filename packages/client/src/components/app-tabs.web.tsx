@@ -6,12 +6,16 @@ import {
     type TabTriggerSlotProps,
     type TabListProps,
 } from "expo-router/ui";
-import { Pressable, View, StyleSheet } from "react-native";
+// biome-ignore lint/correctness/noUnusedImports: reference, may be re-wired into the web tab bar
+import { SymbolView } from "expo-symbols";
+import { Pressable, useColorScheme, View, StyleSheet } from "react-native";
 
+// biome-ignore lint/correctness/noUnusedImports: reference, may be re-wired into the web tab bar
+import { ExternalLink } from "./external-link";
 import { ThemedText } from "./themed-text";
 import { ThemedView } from "./themed-view";
 
-import { MaxContentWidth, Spacing } from "@/constants/theme";
+import { Colors, MaxContentWidth, Spacing } from "@/constants/theme";
 
 export default function AppTabs() {
     return (
@@ -44,6 +48,12 @@ export function TabButton({ children, isFocused, ...props }: TabTriggerSlotProps
 }
 
 export function CustomTabList(props: TabListProps) {
+    // Reference (currently unused): resolve the active color scheme + palette,
+    // kept from the Expo boilerplate for re-wiring the web tab bar theming.
+    const scheme = useColorScheme();
+    // biome-ignore lint/correctness/noUnusedVariables: reference, may be re-wired into the web tab bar theming
+    const colors = Colors[scheme === "unspecified" ? "light" : scheme];
+
     return (
         <View {...props} style={styles.tabListContainer}>
             <ThemedView type="backgroundElement" style={styles.innerContainer}>
