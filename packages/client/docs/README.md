@@ -1,5 +1,5 @@
 # Client
 
-trabajador-client — Expo / React Native app.
+trabajador-client -- Expo / React Native app.
 
-> Stub — fill in as the client develops.
+> Stub -- fill in as the client develops.

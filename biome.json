@@ -55,12 +55,12 @@
             "linter": {
                 "rules": {
                     "style": {
-                        "useImportType": "warn",
-                        "useNodejsImportProtocol": "warn"
+                        "useImportType": "error",
+                        "useNodejsImportProtocol": "error"
                     },
                     "correctness": {
-                        "noUnusedImports": "warn",
-                        "noUnusedVariables": "warn"
+                        "noUnusedImports": "error",
+                        "noUnusedVariables": "error"
                     }
                 }
             },

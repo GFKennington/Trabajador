@@ -1,7 +1,7 @@
-# Trabajador — Docs
+# Trabajador -- Docs
 
-- [Architecture](./architecture.md) — monorepo layout and why each package is built the way it is
-- [Environment](./environment.md) — layered `.env` files
+- [Architecture](./architecture.md) -- monorepo layout and why each package is built the way it is
+- [Environment](./environment.md) -- how config reaches dev and prod
 
 ## Per-package docs
 

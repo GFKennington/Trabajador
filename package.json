@@ -7,13 +7,13 @@
         "packages/*"
     ],
     "scripts": {
-        "build": "tsc -b && npm run export:web -w trabajador-client",
+        "build": "tsc -b && npm run build -w trabajador-server && npm run export:web -w trabajador-client",
         "typecheck": "tsc -b && tsc --noEmit -p packages/client/tsconfig.json",
         "lint": "biome lint .",
         "format": "biome format --write .",
         "check": "biome check .",
         "spellcheck": "cspell lint .",
-        "ci": "biome ci . && npm run spellcheck && npm run typecheck && npm run build",
+        "ci": "biome ci --error-on-warnings . && npm run spellcheck && npm run typecheck && npm run build",
         "dev:server": "npm run dev -w trabajador-server",
         "dev:client": "npm run start -w trabajador-client",
         "test": "npm run test -ws --if-present",

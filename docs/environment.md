@@ -1,17 +1,38 @@
-# Environment (`.env` files)
+# Environment
 
-Four tiers, low → high precedence (later wins):
+The server reads `process.env` only -- it never opens a `.env` file and never
+assumes a monorepo layout, so the built artifact runs anywhere.
 
-1. `.env` (root) — global committed defaults
-2. `packages/<name>/.env` — package committed defaults
-3. `.env.local` (root) — personal override
-4. `packages/<name>/.env.local` — personal override (highest)
+- **Dev:** the `packages/server` `dev` script loads `.env` then `.env.local`
+  via Node's `--env-file-if-exists` flag, before the server starts.
+- **Prod:** the platform (container, PaaS, k8s) injects env vars. No `.env`
+  files are needed or loaded.
 
-**Committed** (`.env`, `packages/*/.env` + `.env.example` templates): safe defaults only, never secrets.
-**Gitignored** (`.env.local`, `packages/*/.env.local`): personal/local overrides.
+Precedence (high -> low): **platform env** > `.env.local` (gitignored) >
+`.env` (committed default).
 
-## How the server loads them
+## Variables
 
-`packages/server/src/index.ts` loads all four layers in order with `override: true`, paths resolved from `import.meta.url` so they work regardless of cwd.
+| Variable                  | Default                       | Notes                                      |
+| ------------------------- | ----------------------------- | ------------------------------------------ |
+| `PORT`                    | `3000` (`packages/server/.env`) | server listen port                        |
+| `EXPO_PUBLIC_API_BASE_URL`| `http://localhost:3000` (`packages/client/.env`) | client -> server base URL (build-time, see below) |
 
-dotenv docs: <https://dotenv.org/>
+## Client env is build-time
+
+Expo embeds a variable into the bundle **only** if its name starts with
+`EXPO_PUBLIC_`; a bare `API_BASE_URL` is silently dropped. Client env is set at
+build time (Metro embeds it), not runtime -- for a deployed client, set
+`EXPO_PUBLIC_*` in the EAS build environment.
+
+## Files
+
+- `packages/<name>/.env` -- committed, safe defaults, never secrets.
+- `packages/<name>/.env.local` -- gitignored, personal overrides / secrets.
+- `packages/<name>/.env.example` -- documentation of overridable keys; not
+  loaded at runtime.
+
+## Reference
+
+- Node `--env-file`: <https://nodejs.org/api/cli.html#--env-fileconfig>
+- Expo env vars: <https://docs.expo.dev/guides/environment-variables/>

@@ -1,26 +1,13 @@
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
 import { serve } from "@hono/node-server";
-import dotenv from "dotenv";
 import { Hono } from "hono";
 import { formatDateTime, ok } from "trabajador-shared";
 
-// Load env in layered precedence (low -> high; later wins):
-//   root .env < package .env < root .env.local < package .env.local
-// (committed defaults first, then personal overrides; package overrides root
-// within each tier.) Paths resolve relative to this module, not cwd.
-const here = dirname(fileURLToPath(import.meta.url)); // packages/server/dist
-const serverDir = join(here, ".."); // packages/server
-const monorepoRoot = join(here, "../../.."); // monorepo root (dist -> server -> packages -> root)
-const envFiles = [
-    join(monorepoRoot, ".env"),
-    join(serverDir, ".env"),
-    join(monorepoRoot, ".env.local"),
-    join(serverDir, ".env.local"),
-];
-for (const f of envFiles) {
-    dotenv.config({ path: f, override: true, quiet: true });
-}
+// Configuration comes from process.env only -- no .env file loading here.
+// In development, .env files are loaded by the dev launch script via
+// Node's --env-file-if-exists flag (see package.json `dev` script).
+// In production, the platform (container/PaaS/etc.) injects env vars.
+// This keeps the server free of any filesystem or monorepo-layout
+// assumptions so the built artifact runs anywhere.
 
 const app = new Hono();
 

@@ -14,7 +14,7 @@ ios/
 android/
 
 # env: local/personal overrides are never committed
-# (.env and packages/*/.env are committed defaults; .env.local is gitignored)
+# (packages/*/.env are committed defaults; packages/*/.env.local is gitignored)
 .env.local
 packages/*/.env.local
 

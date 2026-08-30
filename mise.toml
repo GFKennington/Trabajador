@@ -37,7 +37,7 @@ description = 'Spell-check the codebase with cspell'
 run = 'npm run spellcheck'
 
 [tasks.ci]
-description = 'Run the full CI locally (biome ci, cspell, typecheck, build) — mirrors .github/workflows/ci.yml'
+description = 'Run the full CI locally (biome ci, cspell, typecheck, build) -- mirrors .github/workflows/ci.yml'
 run = 'npm run ci'
 
 [tasks.test]

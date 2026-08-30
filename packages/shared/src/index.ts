@@ -10,7 +10,7 @@ export function formatDate(date: Date): string {
 
 /** Format a Date as an ISO-8601 datetime string (UTC, seconds precision). */
 export function formatDateTime(date: Date): string {
-    return date.toISOString().slice(0, 19) + "Z";
+    return `${date.toISOString().slice(0, 19)}Z`;
 }
 
 /**
