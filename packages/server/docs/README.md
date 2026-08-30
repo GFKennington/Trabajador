@@ -1,12 +1,7 @@
-# Server Docs
+# Server
 
-Hono-on-Node API server (`packages/server`).
+trabajador-server — Hono API server on Node.
 
-## Topics
-
-- Routes (`/health`, `/api/time`)
-- Environment loading (layered .env via dotenv)
-- Request/response envelopes (`ok` / `err` from `trabajador-shared`)
-- Port handling (`PORT`, fallback to 3000)
+Routes: `/health`, `/api/time` (uses `formatDateTime` + `ok` from trabajador-shared).
 
 > Stub — fill in as the server develops.

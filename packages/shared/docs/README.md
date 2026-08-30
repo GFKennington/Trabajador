@@ -1,11 +1,7 @@
-# Shared Docs
+# Shared
 
-Generic utilities shared across client and server (`packages/shared`).
+trabajador-shared — utilities shared by client + server.
 
-## Topics
-
-- Date helpers (`formatDate`, `formatDateTime`)
-- JSON envelopes (`ok`, `err`, `Ok<T>`, `Err`)
-- Int parsing (`toInt`)
+Exports: `formatDate`, `formatDateTime`, `toInt`, `ok`/`err` envelopes.
 
 > Stub — fill in as shared utilities grow.
