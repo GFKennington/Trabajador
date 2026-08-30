@@ -5,7 +5,7 @@
     "type": "module",
     "main": "dist/index.js",
     "scripts": {
-        "dev": "tsx watch --env-file-if-exists=.env --env-file-if-exists=.env.local src/index.ts",
+        "dev": "concurrently -n shared,server -c blue,green \"tsc -b --watch\" \"tsx watch --env-file-if-exists=.env --env-file-if-exists=.env.local src/index.ts\"",
         "predev": "tsc -b",
         "build": "esbuild src/index.ts --bundle --platform=node --format=esm --target=node24 --outfile=dist/index.js",
         "start": "node dist/index.js"

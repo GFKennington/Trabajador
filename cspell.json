@@ -25,7 +25,6 @@
         "commitlint",
         "lint-staged",
         "tsx",
-        "kcmil",
         "ampacity",
         "Kennington",
         "Stott",
@@ -40,7 +39,6 @@
         "grantk",
         "srgb",
         "worklets",
-        "inlines",
         "predev",
         "npmjs",
         "KHTML"

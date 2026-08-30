@@ -25,6 +25,10 @@ npm run dev:client
 
 Requires Node >= 24 (via [mise](https://mise.jdx.dev)).
 
+> **mise is required to commit** — the `pre-commit` hook runs gitleaks via
+> `mise exec`, so contributors must have mise installed and `mise install` run
+> before their first commit. Install mise from <https://mise.jdx.dev>.
+
 ## Docs
 
 - Per-package: [client](./packages/client/README.md), [server](./packages/server/README.md), [shared](./packages/shared/README.md)

@@ -3,12 +3,3 @@
 # Runs in CI as part of `mise run ci`, and in pre-commit via `protect --staged`.
 
 title = "trabajador"
-
-# Extend the built-in rules; gitleaks uses its default rule set unless we
-# override. We only need allowlisting for the intentional secret-pattern
-# fragments in tools/scan-secrets.sh (regex examples used by the scanner).
-[allowlist]
-description = "Intentional secret-pattern fragments in the scanner script."
-paths = [
-    '''tools/scan-secrets\.sh''',
-]
