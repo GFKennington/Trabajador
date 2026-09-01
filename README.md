@@ -32,3 +32,11 @@ Requires Node >= 24 (via [mise](https://mise.jdx.dev)).
 ## Docs
 
 - Per-package: [client](./packages/client/README.md), [server](./packages/server/README.md), [shared](./packages/shared/README.md)
+
+## CI
+
+- `CI` workflow (biome, cspell, lychee, gitleaks, typecheck, build) runs on
+  every PR and push to `main`.
+- `TODO issues` workflow turns new TODO/FIXME/BUG/HACK comments into GitHub
+  issues when they land on `main`, and closes them automatically when the
+  comment is removed.
