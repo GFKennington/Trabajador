@@ -35,8 +35,10 @@ Requires Node >= 24 (via [mise](https://mise.jdx.dev)).
 
 ## CI
 
-- `CI` workflow (biome, cspell, lychee, gitleaks, typecheck, build) runs on
-  every PR and push to `main`.
+- `CI` workflow runs on every PR and push to `main`. Each gate is its own job,
+  so GitHub reports a separate check per gate: Lint & Format (biome), Spell
+  Check (cspell), Link Check (lychee), Secret Scan (gitleaks), Typecheck, and
+  Build. `mise run ci` runs the same gates locally in one shot.
 - `TODO issues` workflow turns new TODO/FIXME/BUG/HACK comments into GitHub
   issues when they land on `main`, and closes them automatically when the
   comment is removed.

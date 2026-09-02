@@ -8,18 +8,97 @@ on:
 permissions:
   contents: read
 
+# Each gate runs as its own job so GitHub reports a separate check per gate
+# instead of one combined "ci" item. Link Check and Secret Scan only need the
+# checkout and mise tools (lychee/gitleaks scan repo files and git history),
+# so they skip `npm ci`.
 jobs:
-  quality:
-    name: ci
+  lint:
+    name: Lint & Format
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Node from mise
+      - name: Install tools from mise
         uses: jdx/mise-action@v2
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Run CI gates (biome, cspell, links, secrets, typecheck, build)
-        run: mise run ci
+      - name: Biome (lint + format + import order)
+        run: mise run biome-check
+
+  spellcheck:
+    name: Spell Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install tools from mise
+        uses: jdx/mise-action@v2
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: cspell
+        run: mise run spellcheck
+
+  links:
+    name: Link Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install tools from mise
+        uses: jdx/mise-action@v2
+
+      - name: lychee
+        run: mise run check-links
+
+  secrets:
+    name: Secret Scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install tools from mise
+        uses: jdx/mise-action@v2
+
+      - name: gitleaks
+        run: mise run scan-secrets
+
+  typecheck:
+    name: Typecheck
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install tools from mise
+        uses: jdx/mise-action@v2
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: tsc
+        run: mise run typecheck
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install tools from mise
+        uses: jdx/mise-action@v2
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build all packages
+        run: mise run build

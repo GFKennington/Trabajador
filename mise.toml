@@ -34,12 +34,16 @@ run = 'npm run format'
 description = 'Lint + format + organize imports with Biome'
 run = 'npm run check'
 
+[tasks.biome-check]
+description = 'Biome CI-mode gate (lint + format + import order, no auto-fix)'
+run = 'npm run check:ci'
+
 [tasks.spellcheck]
 description = 'Spell-check the codebase with cspell'
 run = 'npm run spellcheck'
 
 [tasks.ci]
-description = 'Run the full CI locally (biome ci, cspell, typecheck, build, link check) -- mirrors .github/workflows/ci.yml'
+description = 'Run every CI gate in one shot (biome, cspell, links, secrets, typecheck, build) -- same gates as .github/workflows/ci.yml, which runs each as its own job'
 run = 'npm run ci'
 
 [tasks.check-links]
