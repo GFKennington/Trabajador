@@ -1,11 +1,67 @@
 [tools]
-node = "24"
+node = "24.20.0"
+lychee = "0.24.2"
+gitleaks = "8.30.1"
 
 [env]
 NODE_ENV = 'development'
 
 [tasks.clean]
-run = './tools/clean.sh'
+description = 'Full clean: remove build artifacts + all node_modules (run `mise run install` after). --keep-deps keeps deps.'
+run = './tools/clean-repo.sh'
+
+[tasks.install]
+description = 'Install all workspace dependencies (npm install)'
+run = 'npm install'
+
+[tasks.build]
+description = 'Build all packages: shared + server (tsc -b) and client (expo export web)'
+run = 'npm run build'
+
+[tasks.typecheck]
+description = 'Typecheck all packages (tsc -b for shared+server, tsc --noEmit for client)'
+run = 'npm run typecheck'
+
+[tasks.lint]
+description = 'Lint with Biome'
+run = 'npm run lint'
+
+[tasks.format]
+description = 'Format the codebase with Biome (write)'
+run = 'npm run format'
+
+[tasks.check]
+description = 'Lint + format + organize imports with Biome'
+run = 'npm run check'
+
+[tasks.biome-check]
+description = 'Biome CI-mode gate (lint + format + import order, no auto-fix)'
+run = 'npm run check:ci'
+
+[tasks.spellcheck]
+description = 'Spell-check the codebase with cspell'
+run = 'npm run spellcheck'
+
+[tasks.ci]
+description = 'Run every CI gate in one shot (biome, cspell, links, secrets, typecheck, build) -- same gates as .github/workflows/ci.yml, which runs each as its own job'
+run = 'npm run ci'
+
+[tasks.check-links]
+description = 'Verify all markdown/source links resolve (lychee)'
+run = 'lychee --config lychee.toml .'
+
+[tasks.scan-secrets]
+description = 'Scan for secrets in the working tree (gitleaks detect)'
+run = 'gitleaks detect --source . --config .gitleaks.toml --no-banner --redact'
 
 [tasks.test]
-run = 'npm run test'
+description = 'Run tests across workspaces'
+run = 'npm test'
+
+[tasks."dev:server"]
+description = 'Run the server in dev mode (tsx watch)'
+run = 'npm run dev:server'
+
+[tasks."dev:client"]
+description = 'Run the Expo client dev server'
+run = 'npm run dev:client'

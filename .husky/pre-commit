@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+# Fail fast: if the secret scan fails, don't run lint-staged.
+# Run gitleaks via mise so the binary is on PATH (mise manages it).
+set -e
+mise exec -- gitleaks protect --staged --source . --config .gitleaks.toml --no-banner --redact
+npx lint-staged

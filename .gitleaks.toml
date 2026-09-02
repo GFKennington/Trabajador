@@ -1,0 +1,5 @@
+# gitleaks config.
+# Run locally: `mise run scan-secrets` (gitleaks is installed via mise).
+# Runs in CI as part of `mise run ci`, and in pre-commit via `protect --staged`.
+
+title = "trabajador"

@@ -1,81 +1,89 @@
-import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import * as Device from "expo-device";
+import { Platform, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-import { AnimatedIcon } from '@/components/animated-icon';
-import { HintRow } from '@/components/hint-row';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { WebBadge } from '@/components/web-badge';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
+// biome-ignore lint/correctness/noUnusedImports: reference, may be wired into the home screen later
+import { AnimatedIcon } from "@/components/animated-icon";
+// biome-ignore lint/correctness/noUnusedImports: reference, may be wired into the home screen later
+import { HintRow } from "@/components/hint-row";
+import { ThemedText } from "@/components/themed-text";
+import { ThemedView } from "@/components/themed-view";
+import { WebBadge } from "@/components/web-badge";
+import { BottomTabInset, MaxContentWidth, Spacing } from "@/constants/theme";
+import { formatDate } from "trabajador-shared";
 
+// Kept as reference (currently unused). Shows the platform-specific dev-menu
+// hint pattern from the Expo boilerplate; may be wired into the home screen
+// later.
+// biome-ignore lint/correctness/noUnusedVariables: reference, may be wired into the home screen later
 function getDevMenuHint() {
-  if (Platform.OS === 'web') {
-    return <ThemedText type="small">use browser devtools</ThemedText>;
-  }
-  if (Device.isDevice) {
+    if (Platform.OS === "web") {
+        return <ThemedText type="small">use browser devtools</ThemedText>;
+    }
+    if (Device.isDevice) {
+        return (
+            <ThemedText type="small">
+                shake device or press <ThemedText type="code">m</ThemedText> in terminal
+            </ThemedText>
+        );
+    }
+    const shortcut = Platform.OS === "android" ? "cmd+m (or ctrl+m)" : "cmd+d";
     return (
-      <ThemedText type="small">
-        shake device or press <ThemedText type="code">m</ThemedText> in terminal
-      </ThemedText>
+        <ThemedText type="small">
+            press <ThemedText type="code">{shortcut}</ThemedText>
+        </ThemedText>
     );
-  }
-  const shortcut = Platform.OS === 'android' ? 'cmd+m (or ctrl+m)' : 'cmd+d';
-  return (
-    <ThemedText type="small">
-      press <ThemedText type="code">{shortcut}</ThemedText>
-    </ThemedText>
-  );
 }
 
 export default function HomeScreen() {
-  return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
-          <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Trabajador
-          </ThemedText>
-        </ThemedView>
+    return (
+        <ThemedView style={styles.container}>
+            <SafeAreaView style={styles.safeArea}>
+                <ThemedView style={styles.heroSection}>
+                    <ThemedText type="title" style={styles.title}>
+                        Welcome to&nbsp;Trabajador
+                    </ThemedText>
+                    <ThemedText type="small">shared lib ok: {formatDate(new Date())}</ThemedText>
+                </ThemedView>
 
-        {Platform.OS === 'web' && <WebBadge />}
-      </SafeAreaView>
-    </ThemedView>
-  );
+                {Platform.OS === "web" && <WebBadge />}
+            </SafeAreaView>
+        </ThemedView>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
-  },
-  heroSection: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
-  },
-  title: {
-    textAlign: 'center',
-  },
-  code: {
-    textTransform: 'uppercase',
-  },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: 'stretch',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
-  },
+    container: {
+        flex: 1,
+        justifyContent: "center",
+        flexDirection: "row",
+    },
+    safeArea: {
+        flex: 1,
+        paddingHorizontal: Spacing.four,
+        alignItems: "center",
+        gap: Spacing.three,
+        paddingBottom: BottomTabInset + Spacing.three,
+        maxWidth: MaxContentWidth,
+    },
+    heroSection: {
+        alignItems: "center",
+        justifyContent: "center",
+        flex: 1,
+        paddingHorizontal: Spacing.four,
+        gap: Spacing.four,
+    },
+    title: {
+        textAlign: "center",
+    },
+    code: {
+        textTransform: "uppercase",
+    },
+    stepContainer: {
+        gap: Spacing.three,
+        alignSelf: "stretch",
+        paddingHorizontal: Spacing.three,
+        paddingVertical: Spacing.four,
+        borderRadius: Spacing.four,
+    },
 });
