@@ -26,6 +26,9 @@ export default function AppTabs() {
                     <TabTrigger name="home" href="/" asChild>
                         <TabButton>Home</TabButton>
                     </TabTrigger>
+                    <TabTrigger name="wire_calculator" href="/wire_calculator" asChild>
+                        <TabButton>Wire Calculator</TabButton>
+                    </TabTrigger>
                 </CustomTabList>
             </TabList>
         </Tabs>

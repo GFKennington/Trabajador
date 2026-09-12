@@ -20,6 +20,14 @@ export default function AppTabs() {
                     renderingMode="template"
                 />
             </NativeTabs.Trigger>
+
+            <NativeTabs.Trigger name="wire_calculator">
+                <NativeTabs.Trigger.Label>Wire Calculator</NativeTabs.Trigger.Label>
+                <NativeTabs.Trigger.Icon
+                    src={require("@/assets/images/tabIcons/explore.png")}
+                    renderingMode="template"
+                />
+            </NativeTabs.Trigger>
         </NativeTabs>
     );
 }
