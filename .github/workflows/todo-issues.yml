@@ -1,0 +1,24 @@
+name: TODO issues
+
+# Turns new TODO/FIXME/BUG/HACK comments in pushed commits into GitHub issues.
+# Runs only on pushes to main (PR merges included) so branch churn doesn't
+# spawn issues that get closed a few commits later. Issues are automatically
+# closed when the TODO is removed (closeIssues defaults to true).
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  todo:
+    name: todo-to-issue
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Turn TODO comments into issues
+        uses: alstr/todo-to-issue-action@v5.1.13

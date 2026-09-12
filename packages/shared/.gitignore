@@ -1,0 +1,2 @@
+# local env files (personal overrides, never committed)
+.env*.local

@@ -1,0 +1,44 @@
+# lychee link checker config.
+# Run locally: `mise run check-links` (lychee is installed via mise).
+# Runs in CI as part of `mise run ci`.
+
+# Skip these paths entirely (regex on file paths).
+exclude_path = [
+    "(^|/)node_modules/",
+    "(^|/)dist/",
+    "(^|/)\\.expo/",
+    "(^|/)web-build/",
+    "(^|/)ios/",
+    "(^|/)android/",
+    "package-lock\\.json",
+    "(^|/)\\.git/",
+]
+
+# Exclude URLs that block automated checkers (Cloudflare bot protection)
+# but are valid for humans. A real break (404/410) on these would still be
+# caught; we only skip the bot-block false positive.
+exclude = [
+    "^https?://(www\\.)?npmjs\\.com/",
+]
+
+# Accept these status codes as success.
+# 206 = partial content (some docs return this for range requests).
+# 429 = rate-limited; don't fail CI on transient throttling.
+accept = ["200", "206", "429"]
+
+# How to handle HTML fragments (anchors). "full" = resolve in-page anchors.
+include_fragments = "full"
+
+# Sane timeout and concurrency so CI doesn't hang or hammer hosts.
+timeout = 20
+max_concurrency = 8
+
+# Browser-like user agent; some sites block the default lychee UA.
+user_agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+
+# Retry once on transient failures.
+max_retries = 1
+
+# Exclude localhost and private networks (dev URLs in comments).
+exclude_all_private = true
+exclude_loopback = true

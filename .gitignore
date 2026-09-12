@@ -1,1 +1,23 @@
+# dependencies
 node_modules/
+
+# build outputs
+dist/
+*.tsbuildinfo
+
+# expo / metro
+.expo/
+web-build/
+
+# generated native
+ios/
+android/
+
+# env: local/personal overrides are never committed
+# (packages/*/.env are committed defaults; packages/*/.env.local is gitignored)
+.env.local
+packages/*/.env.local
+
+# logs & os
+*.log
+.DS_Store
