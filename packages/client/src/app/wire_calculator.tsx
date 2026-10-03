@@ -45,7 +45,7 @@ export default function WireCalculatorScreen() {
                     </ThemedText>
                 </ThemedView>
 
-                {ampacity}
+                <ThemedText type="subtitle">Ampacity: {ampacity}</ThemedText>
                 <NumberInput
                     onChange={setAmpacity}
                     allowDecimal={true}

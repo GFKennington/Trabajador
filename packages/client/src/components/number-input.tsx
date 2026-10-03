@@ -1,4 +1,4 @@
-import { TextInput } from "@expo/ui";
+import { TextInput, useNativeState } from "@expo/ui";
 import { useColorScheme } from "react-native";
 
 import { Colors } from "@/constants/theme";
@@ -12,6 +12,7 @@ interface NumberInputProps {
 export default function NumberInput({ onChange, allowDecimal, placeholder }: NumberInputProps) {
     const scheme = useColorScheme();
     const colors = Colors[scheme === "unspecified" ? "light" : scheme];
+    const text = useNativeState("");
 
     const handleChange = (value: string): void => {
         let cleanedValue: string = value;
@@ -25,6 +26,8 @@ export default function NumberInput({ onChange, allowDecimal, placeholder }: Num
             cleanedValue = value.replace(/[^0-9]/g, "");
         }
 
+        text.value = cleanedValue;
+
         let numericValue: number | null = cleanedValue === "" ? null : parseFloat(cleanedValue);
         if (numericValue !== null && Number.isNaN(numericValue)) {
             numericValue = null;
@@ -35,6 +38,7 @@ export default function NumberInput({ onChange, allowDecimal, placeholder }: Num
 
     return (
         <TextInput
+            value={text}
             selectionColor={colors.background}
             placeholderTextColor={colors.text}
             keyboardType={allowDecimal ? "decimal-pad" : "number-pad"}
